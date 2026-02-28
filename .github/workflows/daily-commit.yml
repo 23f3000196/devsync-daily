@@ -1,9 +1,12 @@
 name: Daily Repository Update
 
+permissions:
+  contents: write
+
 on:
   schedule:
-    - cron: '30 5 * * *'   # Runs daily at 05:30 UTC
-  workflow_dispatch:        # Allows manual trigger
+    - cron: '30 5 * * *'
+  workflow_dispatch:
 
 jobs:
   daily-commit:
@@ -25,5 +28,4 @@ jobs:
           git commit -m "Automated daily commit on $(date)" || echo "No changes to commit"
 
       - name: Push Changes
-        run: |
-          git push
+        run: git push
